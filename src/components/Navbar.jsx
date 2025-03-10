@@ -1,12 +1,33 @@
 import React from 'react';
-import { User, Building, GraduationCap, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { User, Building, GraduationCap, X, LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const VerticalNavbar = ({ onClose }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear all authentication data from localStorage
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminInfo');
+    
+    // Remove the token from axios headers if you're using axios
+    if (window.axios && window.axios.defaults.headers.common['token']) {
+      delete window.axios.defaults.headers.common['token'];
+    }
+    
+    // Close the navbar if on mobile
+    if (onClose) {
+      onClose();
+    }
+    
+    // Redirect to login page
+    navigate('/');
+  };
+
   return (
     <div className="h-screen w-64 bg-gray-900 text-white flex flex-col relative">
       {/* Close button for mobile */}
-      <button 
+      <button
         onClick={onClose}
         className="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-white"
       >
@@ -41,6 +62,15 @@ const VerticalNavbar = ({ onClose }) => {
           <span>Colleges</span>
         </Link>
       </nav>
+      
+      {/* Logout Button */}
+      <button
+        onClick={handleLogout}
+        className="mx-4 mb-4 flex items-center justify-center p-3 bg-red-600 hover:bg-red-700 rounded-md transition-colors"
+      >
+        <LogOut className="mr-2" size={18} />
+        <span>Logout</span>
+      </button>
       
       {/* Footer */}
       <div className="p-4 border-t border-gray-700 text-sm text-gray-400">
