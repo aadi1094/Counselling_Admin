@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Colleges from './pages/Colleges';
 import Login from './pages/Login';
+import ChangePassword from './pages/ChangePassword';
 
 // Protected Route component to handle authentication
 const ProtectedRoute = ({ children }) => {
@@ -39,6 +40,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <h1>Users Page - Coming Soon</h1>
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route 
+            path='/change-password' 
+            element={
+              <ProtectedRoute>
+                <ChangePassword />
               </ProtectedRoute>
             }
           />
