@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Colleges from './pages/Colleges';
 import Login from './pages/Login';
 import ChangePassword from './pages/ChangePassword';
+import Users from './pages/Users';
+import Forms from './pages/Forms';
 
 // Protected Route component to handle authentication
 const ProtectedRoute = ({ children }) => {
@@ -39,7 +41,16 @@ function App() {
             path='/users' 
             element={
               <ProtectedRoute>
-                <h1>Users Page - Coming Soon</h1>
+                <Users/>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route 
+            path='/forms' 
+            element={
+              <ProtectedRoute>
+                <Forms/>
               </ProtectedRoute>
             }
           />
