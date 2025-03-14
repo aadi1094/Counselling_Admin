@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import ChangePassword from './pages/ChangePassword';
 import Users from './pages/Users';
 import Forms from './pages/Forms';
+import Lists from './pages/Lists';
 
 // Protected Route component to handle authentication
 const ProtectedRoute = ({ children }) => {
@@ -51,6 +52,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Forms/>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route 
+            path='/lists' 
+            element={
+              <ProtectedRoute>
+                <Lists />
               </ProtectedRoute>
             }
           />
