@@ -23,7 +23,7 @@ const ChangePassword = () => {
     setMessage({ text: '', type: '' });
     
     try {
-      const res = await axios.post('http://localhost:3004/api/admin/request-otp', { email });
+      const res = await axios.post('http://localhost:3008/api/admin/request-otp', { email });
       setMessage({ text: res.data.message, type: 'success' });
       setStep(2);
     } catch (error) {
@@ -47,7 +47,7 @@ const ChangePassword = () => {
     setMessage({ text: '', type: '' });
     
     try {
-      const res = await axios.post('http://localhost:3004/api/admin/verify-otp', { email, otp });
+      const res = await axios.post('http://localhost:3008/api/admin/verify-otp', { email, otp });
       setMessage({ text: res.data.message, type: 'success' });
       setStep(3);
     } catch (error) {
@@ -76,7 +76,7 @@ const ChangePassword = () => {
     setMessage({ text: '', type: '' });
     
     try {
-      const res = await axios.post('http://localhost:3004/api/admin/change-password', { 
+      const res = await axios.post('http://localhost:3008/api/admin/change-password', { 
         email, 
         otp, 
         newPassword 
