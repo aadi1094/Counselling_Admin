@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Menu } from 'lucide-react'
 import Navbar from '../components/Navbar'
-import UsersManagement from '../components/UsersManagement';
+import UsersManagement from '../components/users/UsersManagement';
 
 
 const Users = () => {

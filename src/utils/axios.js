@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3008'  // Update this to match your admin API port
+  baseURL: import.meta.env.VITE_REACT_APP_ADMIN_API_URL || 'http://localhost:3008'  // Use environment variable with fallback
 });
 
 // Add a request interceptor to add the token to all requests

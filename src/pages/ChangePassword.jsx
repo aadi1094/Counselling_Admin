@@ -12,10 +12,10 @@ const ChangePassword = () => {
   const [message, setMessage] = useState({ text: '', type: '' });
   const navigate = useNavigate();
 
-  const requestOTP = async (e) => {
+  const handleSendOTP = async (e) => {
     e.preventDefault();
     if (!email) {
-      setMessage({ text: 'Please enter your email address', type: 'error' });
+      setMessage({ text: 'Please enter your email', type: 'error' });
       return;
     }
     
@@ -23,7 +23,7 @@ const ChangePassword = () => {
     setMessage({ text: '', type: '' });
     
     try {
-      const res = await axios.post('http://localhost:3008/api/admin/request-otp', { email });
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_ADMIN_API_URL}/api/admin/request-otp`, { email });
       setMessage({ text: res.data.message, type: 'success' });
       setStep(2);
     } catch (error) {
@@ -47,7 +47,7 @@ const ChangePassword = () => {
     setMessage({ text: '', type: '' });
     
     try {
-      const res = await axios.post('http://localhost:3008/api/admin/verify-otp', { email, otp });
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_ADMIN_API_URL}/api/admin/verify-otp`, { email, otp });
       setMessage({ text: res.data.message, type: 'success' });
       setStep(3);
     } catch (error) {
@@ -60,7 +60,7 @@ const ChangePassword = () => {
     }
   };
 
-  const changePassword = async (e) => {
+  const resetPassword = async (e) => {
     e.preventDefault();
     if (!newPassword) {
       setMessage({ text: 'Please enter a new password', type: 'error' });
@@ -76,7 +76,7 @@ const ChangePassword = () => {
     setMessage({ text: '', type: '' });
     
     try {
-      const res = await axios.post('http://localhost:3008/api/admin/change-password', { 
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_ADMIN_API_URL}/api/admin/change-password`, { 
         email, 
         otp, 
         newPassword 
@@ -159,7 +159,7 @@ const ChangePassword = () => {
           
           {/* Step 1: Request OTP */}
           {step === 1 && (
-            <form onSubmit={requestOTP}>
+            <form onSubmit={handleSendOTP}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                   Email Address
@@ -234,7 +234,7 @@ const ChangePassword = () => {
           
           {/* Step 3: Change Password */}
           {step === 3 && (
-            <form onSubmit={changePassword}>
+            <form onSubmit={resetPassword}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="newPassword">
                   New Password

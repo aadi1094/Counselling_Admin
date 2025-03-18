@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Update this to your actual backend URL
-const API_BASE_URL = 'http://localhost:3008'; // or whatever port your backend is running on
+const API_URL = import.meta.env.VITE_REACT_APP_ADMIN_API_URL;
+console.log('API_URL:', API_URL);
+
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -28,8 +29,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      // Use the full URL to your backend API
-      const response = await axios.post(`${API_BASE_URL}/api/admin/login`, credentials);
+      const response = await axios.post(`${API_URL}/api/admin/login`, credentials);
       
       // Store the token in localStorage
       localStorage.setItem('adminToken', response.data.token);

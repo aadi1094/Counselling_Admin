@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
-import ListsManagement from '../components/ListsManagement'
+import ListsManagement from '../components/lists/ListsManagement'
 import { Menu } from 'lucide-react'
 
 const Lists = () => {
